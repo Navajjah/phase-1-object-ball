@@ -124,7 +124,7 @@ function gameObject() {
     return gameObject().home.teamName;
   }
   
-  console.log(homeTeamName()); // "Brooklyn Nets"
+  console.log(homeTeamName()); 
 
 //
   function numPointsScored(playerName) {
@@ -141,7 +141,7 @@ function gameObject() {
     return undefined; // Player not found
   }
   
-  console.log(numPointsScored("Alan Anderson")); // 22
+  console.log(numPointsScored("Alan Anderson")); 
 //
 
   function shoeSize(playerName) {
@@ -155,10 +155,10 @@ function gameObject() {
       return awayPlayers[playerName].shoe;
     }
   
-    return undefined; // Player not found
+    return undefined; 
   }
   
-  console.log(shoeSize("Reggie Evans")); // 14
+  console.log(shoeSize("Reggie Evans")); 
 //
 
   function teamColors(teamName) {
@@ -172,7 +172,7 @@ function gameObject() {
     return undefined; // Team not found
   }
   
-  console.log(teamColors("Brooklyn Nets")); // ["Black", "White"]
+  console.log(teamColors("Brooklyn Nets")); 
   
 //
   function teamNames() {
@@ -180,7 +180,7 @@ function gameObject() {
     return [game.home.teamName, game.away.teamName];
   }
   
-  console.log(teamNames()); // ["Brooklyn Nets", "Charlotte Hornets"]
+  console.log(teamNames()); 
 //
 
 
@@ -196,7 +196,7 @@ function gameObject() {
     return numbers;
   }
   
-  console.log(playerNumbers("Brooklyn Nets")); // [0, 30, 11, 1, 31]
+  console.log(playerNumbers("Brooklyn Nets")); 
 
 
 
@@ -212,10 +212,10 @@ function gameObject() {
       return awayPlayers[playerName];
     }
   
-    return undefined; // Player not found
+    return undefined; 
   }
   
-  console.log(playerStats("Alan Anderson")); // { number: 0, shoe: 16, points: 22, rebounds: 12, assists: 12, steals: 3, blocks: 1, slamDunks: 1 }
+  console.log(playerStats("Alan Anderson")); 
 //
 
 
@@ -235,12 +235,13 @@ function gameObject() {
     return rebounds;
   }
   
-  console.log(bigShoeRebounds()); // 12 (for Bismak Biyombo with shoe size 16)
+  console.log(bigShoeRebounds()); 
   
 
 
-  
-//Bonus Function
+
+//Bonus Functions 
+
   function mostPointsScored() {
     const players = { ...gameObject().home.players, ...gameObject().away.players };
     let maxPoints = 0;
@@ -256,7 +257,50 @@ function gameObject() {
     return topPlayer;
   }
   
-  console.log(mostPointsScored()); // "Ben Gordon" (33 points)
+  console.log(mostPointsScored()); 
+//
+
+
+  function winningTeam() {
+    const homePoints = Object.values(gameObject().home.players).reduce((sum, player) => sum + player.points, 0);
+    const awayPoints = Object.values(gameObject().away.players).reduce((sum, player) => sum + player.points, 0);
+    
+    return homePoints > awayPoints ? gameObject().home.teamName : gameObject().away.teamName;
+  }
+  
+  console.log(winningTeam()); 
+//
+
+
+  function playerWithLongestName() {
+    const players = { ...gameObject().home.players, ...gameObject().away.players };
+    let longestName = "";
+  
+    for (let player in players) {
+      if (player.length > longestName.length) {
+        longestName = player;
+      }
+    }
+  
+    return longestName;
+  }
+  
+  console.log(playerWithLongestName());
+
+
+
+//Super Bonus Function
+
+  function doesLongNameStealATon() {
+    const longestPlayer = playerWithLongestName();
+    const players = { ...gameObject().home.players, ...gameObject().away.players };
+    
+    return players[longestPlayer].steals > 5; 
+  }
+  
+  console.log(doesLongNameStealATon());
+  
+  
   
 
 
